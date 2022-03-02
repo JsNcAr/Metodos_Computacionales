@@ -126,4 +126,4 @@ int main()
 	return 0;
 } 
 
-//g++ -std=c++14 -Wall -Wextra -pedantic Operaciones_Vectoriales.cpp -o exe && ./exe
+//g++ -std=c++14 -Wall -Wextra -pedantic Operaciones_Vectoriales.cpp -o operaciones_vectoriales.out && ./operaciones_vectoriales.out
