@@ -2,6 +2,8 @@
 using namespace std; //Se importa std
 
 const int N = 4;
+int i,j,k;
+float r;
 
 void print__(float A[N][N]){
 	
@@ -17,15 +19,7 @@ void print__(float A[N][N]){
 	}
 }
 
-int main()
-{
-	
-	float A[N][N] = {{2,0,1,0},{2,1,1,0},{0,0,-2,0},{0,0,2,1}};
-	
-	int i,j,k,l;
-	
-	float r;
-	
+void unificacion(float A[N][N]){
 	for(i = 0; i < N; i++) {
 		
 		r = A[i][i];
@@ -35,36 +29,20 @@ int main()
 			A[i][j] /= r;
 		}
 	}
+}
+
+int main()
+{
 	
-	/*
-	for(i = 1; i < N-1; i++){
-		
-		r = A[i][i-1];
-		
-		if(r != 0){
-			for(j = 0; j < N; j++){
-				
-				A[i][j] -= r*A[i-1][j];
-			}
-		}
-	}
+	float A[N][N] = {{2,0,1,0},{2,1,1,0},{1,0,-3,0},{3,0,2,1}};
 	
-	//Int2
-	for(i = 0; i < N-1; i++){
-		for(j = i+1; j < N; j++){
-			
-			r = A[j][j-1];
-			if(r !=0){
-				cout<<"Entro"<<endl;
-				for(k = 0; k < N; k++){
-					A[j][k] -= r*A[j-1][k];
-				}
-			}
-		}
-	}
 	
-	*/
 	
+	/* Se transforman los pivotes en 1 */
+	unificacion(A);
+	
+	/* Se eliminan los elementos sobrantes de las columnas intermedias */
+
 	for(i = 0; i < N; i++){
 		for(j = i+1; j < N; j++){
 			r = A[j][i];
@@ -75,7 +53,20 @@ int main()
 			}
 		}
 	}
+
 	
+	/* Se vuelven a unificar los pivotes */
+	unificacion(A);
+	
+	/* Se opera la ultima fila */
+	for(i = 0; i < N-1; i++){
+		r = A[N-1][i];
+		if(r != 0){
+			for(j = 0; j < N; j++){
+				A[N-1][i] -= r*A[i][j];
+			}
+		}
+	}	
 	print__(A);
 }
 
